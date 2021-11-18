@@ -1,0 +1,22 @@
+Option Explicit
+
+Sub CreateJiraLinksFromKeys()
+    Dim DomainName, SourceCol, DestinationColumn, StartingRow, EndingRow, RowIndex, JiraKey
+
+    ' Set your domain name, source column, destination column, starting, and ending rows.
+    DomainName = "<domain>"
+    SourceCol = "A"
+    DestinationColumn = "B"
+    StartingRow = 2
+    EndingRow = 50
+    
+    For RowIndex = 3 To 47
+
+        JiraKey = Range(SourceCol & CStr(RowIndex)).Value
+        Range(DestinationColumn & CStr(RowIndex)).Select
+        ActiveSheet.Hyperlinks.Add Anchor:=Selection, Address:= _
+            "https://" & DomainName & ".atlassian.net/browse/" & JiraKey, TextToDisplay:= _
+            JiraKey
+    Next RowIndex
+    
+End Sub
