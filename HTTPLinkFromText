@@ -1,0 +1,21 @@
+Option Explicit
+
+Sub CreateHTTPLinkFromText()
+    Dim LinkText, SourceCol, DestinationColumn, StartingRow, EndingRow, RowIndex, URLValue
+
+    ' Set your domain name, source column, destination column, starting, and ending rows.
+    URLValue = ""  ' Initialize
+    LinkText = "https://<your-URL>/"
+    SourceCol = "A"
+    DestinationColumn = "B"
+    StartingRow = 2
+    EndingRow = 50
+    
+    For RowIndex = 3 To 47
+        URLValue = Range(SourceCol & CStr(RowIndex)).Value
+        Range(DestinationColumn & CStr(RowIndex)).Select
+        ActiveSheet.Hyperlinks.Add Anchor:=Selection, Address:= _
+            LinkText & URLValue, TextToDisplay:= URLValue
+    Next RowIndex
+    
+End Sub
