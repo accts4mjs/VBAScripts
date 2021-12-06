@@ -10,8 +10,7 @@ Sub CreateJiraLinksFromKeys()
     StartingRow = 2
     EndingRow = 50
     
-    For RowIndex = 3 To 47
-
+    For RowIndex = StartingRow To EndingRow
         JiraKey = Range(SourceCol & CStr(RowIndex)).Value
         Range(DestinationColumn & CStr(RowIndex)).Select
         ActiveSheet.Hyperlinks.Add Anchor:=Selection, Address:= _
